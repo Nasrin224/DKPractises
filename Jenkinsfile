@@ -1,26 +1,27 @@
 node {
-   stage('Code Checkout') { 
-     git credentialsId: 'github-credential', url: 'https://github.com/manee2k6/DKPractises.git' 
+   
+   stage('checkout') { // for display purposes
+      checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '12709cc0-c778-47dd-bba4-0553f9e663b2', url: 'https://github.com/Nasrin224/DKPractises.git']]])
+
+   }
+   stage('preparation'){
+       git credentialsId: '12709cc0-c778-47dd-bba4-0553f9e663b2', url: 'https://github.com/Nasrin224/DKPractises.git'
+
    }
    stage('Build') {
-     withMaven(jdk: 'JDK-1.8.0.151', maven: 'Maven-3.5.2') {
-      sh 'mvn clean compile'
-      }
-     
+       sh 'mvn clean compile'
+       echo 'build is done'
+      
    }
-   stage('Sonar Code Coverage') {
-           
-   }
-   
-   stage('Test') {
-       withMaven(jdk: 'JDK-1.8.0.151', maven: 'Maven-3.5.2') {
-      sh 'mvn test'
-      }
+   stage('test'){
+       sh 'mvn test'
+       echo 'testing is done'
    }
    stage('Results') {
-       echo 'Results are generated'
-     
+       echo 'results are generated'
+      
    }
+   
    stage('Archive') {
        echo 'Archived Test Reports'
    
@@ -30,3 +31,5 @@ node {
      
    }
 }
+   
+
