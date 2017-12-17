@@ -13,7 +13,7 @@ node {
        echo 'build is done'
       
    }
-   stage('test'){
+   stage('test'){ //testing
        sh 'mvn test'
        echo 'testing is done'
    }
