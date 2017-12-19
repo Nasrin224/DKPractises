@@ -1,24 +1,39 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>JetPro</groupId>
-	<artifactId>JetPro</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>JetPro</name>
-	<dependencies>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.11</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>fluent-hc</artifactId>
-			<version>4.5.3</version>
-		</dependency>
-	</dependencies>
-	<build>
-	</build>
+node {
+   
+   stage('checkout') { // for display purposes
+      checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '12709cc0-c778-47dd-bba4-0553f9e663b2', url: 'https://github.com/Nasrin224/DKPractises.git']]])
 
-</project>
+   }
+   stage('preparation'){ //preparation
+       git credentialsId: '12709cc0-c778-47dd-bba4-0553f9e663b2', url: 'https://github.com/Nasrin224/DKPractises.git'
+
+   }
+   stage('Build') { //building
+      withMaven(jdk: 'java 1.8.0_151', maven: 'maven 3.5.2') {
+    sh 'mvn clean compile'
+       echo 'build is done'
+   }
+     
+   }
+   stage('test'){ //testing
+      withMaven(jdk: 'java 1.8.0_151', maven: 'maven 3.5.2') {
+       sh 'mvn test'
+       echo 'testing is done'
+      }
+   }
+   stage('Results') {
+       echo 'results are generated'
+      
+   }
+   
+   stage('Archive') {
+       echo 'Archived Test Reports'
+   
+   }
+   stage('Deploy') {
+       echo 'Deployed the artifacts'
+     
+   }
+}
+   
+
