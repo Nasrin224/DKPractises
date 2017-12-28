@@ -9,15 +9,14 @@ node {
        git credentialsId: 'ef3c5b6c-1d03-4966-9808-a08b8d2d8c64', url: 'https://github.com/Nasrin224/DKPractises.git'
 
    }
-   stage('Build') { //building
-      withMaven(jdk: 'java 1.8.0_151', maven: 'maven 3.5.2') {
+ stage('Build') { //building
+withMaven(jdk: 'JAVA 1.8.0_151', maven: 'maven 3.5.2') {
     sh 'mvn clean compile'
        echo 'build is done'
-   }
-     
-   }
+      }
+  }
    stage('test'){ //testing
-      withMaven(jdk: 'java 1.8.0_151', maven: 'maven 3.5.2') {
+      withMaven(jdk: 'JAVA 1.8.0_151', maven: 'maven 3.5.2'){
        sh 'mvn test'
        echo 'testing is done'
       }
