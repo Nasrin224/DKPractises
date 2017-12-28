@@ -5,7 +5,7 @@ node {
 
    }
    stage('preparation'){ //preparation
-       git credentialsId: '12709cc0-c778-47dd-bba4-0553f9e663b2', url: 'https://github.com/Nasrin224/DKPractises.git'
+       git credentialsId: 'ef3c5b6c-1d03-4966-9808-a08b8d2d8c64', url: 'https://github.com/Nasrin224/DKPractises.git'
 
    }
    stage('Build') { //building
