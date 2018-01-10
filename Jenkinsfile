@@ -8,7 +8,7 @@ node {
 
    }
    stage('Build') { //building
-      withMaven(jdk: 'java 1.8.0_151', maven: 'maven 3.5.2') {
+     withMaven(jdk: 'java 1.8.0_151', maven: 'maven 3.5.2') {
     sh 'mvn clean compile'
        echo 'build is done'
    }
