@@ -1,11 +1,10 @@
 node {
    
    stage('checkout') { // for display purposes
-      checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '12709cc0-c778-47dd-bba4-0553f9e663b2', url: 'https://github.com/Nasrin224/DKPractises.git']]])
-
+      checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '78bf7588-0e63-4171-bdf0-673910b6e365', url: 'https://github.com/Nasrin224/DKPractises.git']]])
    }
    stage('preparation'){ //preparation
-       git credentialsId: '12709cc0-c778-47dd-bba4-0553f9e663b2', url: 'https://github.com/Nasrin224/DKPractises.git'
+       git credentialsId: '78bf7588-0e63-4171-bdf0-673910b6e365', url: 'https://github.com/Nasrin224/DKPractises.git'
 
    }
    stage('Build') { //building
