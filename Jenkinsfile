@@ -15,7 +15,7 @@ node {
      
    }
    stage('test'){ //testing
-      withMaven(jdk: 'java 1.8.0_151', maven: 'maven 3.5.2') {
+     withMaven(jdk: 'java 1.8.0_151', maven: 'maven 3.5.2') {
        sh 'mvn test'
        echo 'testing is done'
       }
