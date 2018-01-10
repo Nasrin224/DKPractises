@@ -11,8 +11,12 @@ node {
       withMaven(jdk: 'java 1.8.0_151', maven: 'maven 3.5.2') {
     sh 'mvn clean compile'
        echo 'build is done'
+   }     
    }
-     
+   stage('sonar code coverage') {
+         withSonarQubeEnv {
+    sh 'mvn clean package sonar:sonar'
+         }
    }
    stage('test'){ //testing
      withMaven(jdk: 'java 1.8.0_151', maven: 'maven 3.5.2') {
